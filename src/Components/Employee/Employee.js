@@ -6,6 +6,7 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Select from '@material-ui/core/Select';
 import AddBoxIcon from '@material-ui/icons/AddBox';
+import { postEmployee, getAllEmployee } from '../../api/EmployeeServices';
 
 import Button from '@material-ui/core/Button';
 
@@ -36,10 +37,31 @@ const useStyles = makeStyles((theme) => ({
     // paddingLeft: 20,
     textAlign: "center",
     color: theme.palette.text.secondary
+
   }
+
+  
 }));
 
+
+
 export default function Employee() {
+  const handleShow = (e) => {
+    getAllEmployee()
+                .then(res => {
+                    // setValues({
+                    //     name: res[0].fname,
+                    //     lname: res[0].lname,
+                    //     email: res[0].email,
+                    //     password: res[0].password,
+                    //     address: res[0].address,
+                    //     phnumber: res[0].phnumber
+                    // });
+                    console.log(res);
+                });
+    console.log(e.target.value);
+    // setValues({ ...values, [prp]: e.target.value });
+}
   const classes = useStyles();
   return (
     <React.Fragment>
@@ -131,7 +153,8 @@ export default function Employee() {
       
           <Button variant="contained">Add Employee</Button>
                 
-      <Button variant="contained"> Show Data</Button>
+      <Button variant="contained"  onClick={handleShow} > Show Data   </Button>
+  
     </React.Fragment>
   );
 }
